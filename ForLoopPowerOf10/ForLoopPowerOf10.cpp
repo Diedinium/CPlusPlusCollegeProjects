@@ -12,7 +12,7 @@ int main()
 	int iTotal = iNumber;
 
 	for (int i = 0; i < 10; i++) {
-		iTotal = iTotal * iNumber;
+		iTotal *= iNumber;
 	}
 
 	std::cout << iNumber << " to the power of 10 : " << iTotal << std::endl;
