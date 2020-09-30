@@ -3,6 +3,9 @@
 #include <string>
 #include <iostream>
 
+#ifndef CUSTOMCLASSES_H
+#define CUSTOMCLASSES_H
+
 class User {
 private:
 	std::string _sName;
@@ -11,3 +14,5 @@ public:
 	std::string GetName();
 	void ChangeName();
 };
+
+#endif // CUSTOMCLASSES_H
