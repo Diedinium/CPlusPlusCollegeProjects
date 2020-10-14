@@ -31,6 +31,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConstructorsDestructors", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Inheritance", "Inheritance\Inheritance.vcxproj", "{4DB87AD8-7A9B-4E9C-AF36-CC7DDCD99F2A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shapes", "Shapes\Shapes.vcxproj", "{337A2D27-C0EF-4791-9B56-C997B749E12F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -151,6 +153,14 @@ Global
 		{4DB87AD8-7A9B-4E9C-AF36-CC7DDCD99F2A}.Release|x64.Build.0 = Release|x64
 		{4DB87AD8-7A9B-4E9C-AF36-CC7DDCD99F2A}.Release|x86.ActiveCfg = Release|Win32
 		{4DB87AD8-7A9B-4E9C-AF36-CC7DDCD99F2A}.Release|x86.Build.0 = Release|Win32
+		{337A2D27-C0EF-4791-9B56-C997B749E12F}.Debug|x64.ActiveCfg = Debug|x64
+		{337A2D27-C0EF-4791-9B56-C997B749E12F}.Debug|x64.Build.0 = Debug|x64
+		{337A2D27-C0EF-4791-9B56-C997B749E12F}.Debug|x86.ActiveCfg = Debug|Win32
+		{337A2D27-C0EF-4791-9B56-C997B749E12F}.Debug|x86.Build.0 = Debug|Win32
+		{337A2D27-C0EF-4791-9B56-C997B749E12F}.Release|x64.ActiveCfg = Release|x64
+		{337A2D27-C0EF-4791-9B56-C997B749E12F}.Release|x64.Build.0 = Release|x64
+		{337A2D27-C0EF-4791-9B56-C997B749E12F}.Release|x86.ActiveCfg = Release|Win32
+		{337A2D27-C0EF-4791-9B56-C997B749E12F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
