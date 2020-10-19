@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Inheritance.cpp" />
+    <ClCompile Include="LoginManager.cpp" />
+    <ClCompile Include="Product.cpp" />
+    <ClCompile Include="ProductManager.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>

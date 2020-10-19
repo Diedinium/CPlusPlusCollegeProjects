@@ -4,72 +4,167 @@
 #include <vector>
 #include "Classes.h"
 
-void Menu(std::vector<User>* vecUsers, std::vector<Admin>* vecAdmins);
+void Menu(LoginManager* loginManager);
+void Login(LoginManager* loginManager, bool isAdmin);
+void AdminMenu(LoginManager* loginManager);
+void UserMenu(LoginManager* loginManager);
+void Pause();
 
 int main()
 {
-    std::vector<User> vecUsers;
-    std::vector<Admin> vecAdmins;
+    LoginManager loginManager;
 
-    User objUser = User("Jake", "Hall", "crappyPassword");
-    std::cout << "User Created: " + objUser.GetUserName() << std::endl;
+    loginManager.AddUser(User("Jake", "Hall", "crappyPassword"));
+    loginManager.AddUser(User("Tobi", "Hall", "crappyPassword1"));
+    loginManager.AddUser(User("Isaac", "Hall", "crappyPassword2"));
+    loginManager.AddUser(User("Luke", "Hall", "crappyPassword3"));
 
-    Admin objAdmin = Admin("Admin", "McAdmin", "crappyPassword");
-    std::cout << "Admin Created: " + objAdmin.GetUserName() << std::endl;
+    loginManager.AddAdmin(Admin("Admin", "McAdmin", "crappyPassword"));
 
-    std::cout << "Attempting to change password for " + objUser.GetUserName() << std::endl;
-    bool passwordChangeSuccesfull = objAdmin.ChangePassword(&objUser, "crappyPassword", "updatedPassword");
-
-    std::string passwordMessage = passwordChangeSuccesfull ? "True" : "False";
-
-    std::cout << "Password changed? " + passwordMessage << std::endl;
-
-    std::cout << "Attempting to change firstName for " + objUser.GetUserName() << std::endl;
-    objAdmin.SetFirstName(&objUser, "Rachel");
-    std::cout << "New username : " + objUser.GetUserName() << std::endl;
-
-    vecUsers.push_back(objUser);
-    vecAdmins.push_back(objAdmin);
-
-    Menu(&vecUsers, &vecAdmins);
+    Menu(&loginManager);
 }
 
-void Menu(std::vector<User>* vecUsers, std::vector<Admin>* vecAdmins) {
-    bool isLoggedIn = false;
+void Menu(LoginManager* loginManager) {
+    bool isExiting = false;
 
     do {
         int logInChoice;
         std::string userName;
         std::string password;
-        std::cout << "Enter 1 to login as admin, 2 to login as user: ";
+
+        system("cls");
+        std::cout << "Options:\n";
+        std::cout << "1 - Login as User\n";
+        std::cout << "2 - Login as Admin\n";
+        std::cout << "9 - Exit\n";
+        std::cout << "Options: ";
         std::cin >> logInChoice;
 
-        if (logInChoice < 1 || logInChoice > 2) {
-            
+        switch (logInChoice) {
+        case 1:
+            Login(loginManager, false);
+            break;
+        case 2:
+            Login(loginManager, true);
+            break;
+        case 9:
+            isExiting = true;
+            std::cout << "Exiting...\n";
+            break;
+        default:
+            std::cout << logInChoice << " is not a valid choice.\n";
+            break;
         }
-        else {
-            std::cout << "Please enter your username:";
-            std::getline(std::cin, userName);
+    } while (!isExiting);
+}
 
-            std::cout << "Please enter your password:";
-            std::getline(std::cin, password);
+void Login(LoginManager* loginManager, bool isAdmin) {
+    std::string strUserName, strPassword;
+    bool isValidLogin = false;
 
-            switch (logInChoice)
-            {
-            case 1:
-                for (size_t i = 0; i < vecUsers->size(); i++)
-                {
-                    if (userName == vecUsers->at(i).GetUserName() && password == vecUsers->at(i).GetPassword()) {
+    system("cls");
+    std::cin.ignore();
 
-                    }
-                }
-                break;
-            case 2:
-                break;
-            default:
-                break;
-            }
+    std::cout << "Please enter your username: ";
+    std::getline(std::cin, strUserName);
+
+    std::cout << "Please enter your password: ";
+    std::getline(std::cin, strPassword);
+
+    if (isAdmin) {
+        isValidLogin = loginManager->CheckAdminLogin(strUserName, strPassword);
+    }
+    else {
+        isValidLogin = loginManager->CheckUserLogin(strUserName, strPassword);
+    }
+
+    if (isValidLogin && isAdmin) {
+        AdminMenu(loginManager);
+    }
+    else if (isValidLogin && !isAdmin) {
+        UserMenu(loginManager);
+    }
+    else {
+        std::cout << "Username or password was incorrect.\n";
+        Pause();
+    }
+}
+
+void AdminMenu(LoginManager* loginManager) {
+    bool isExiting = false;
+    int iAdminChoice;
+
+    do {
+        system("cls");
+        std::cout << "Admin options: \n";
+        std::cout << "1 - Change user password\n";
+        std::cout << "2 - Change user first name\n";
+        std::cout << "3 - Change user last name\n";
+        std::cout << "4 - Add product\n";
+        std::cout << "5 - Delete product\n";
+        std::cout << "9 - Logout\n";
+        std::cout << "Choice : ";
+        std::cin >> iAdminChoice;
+
+        switch (iAdminChoice)
+        {
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 9:
+            isExiting = true;
+            break;
+        default:
+            break;
         }
-    } while (!isLoggedIn)
-    
+    } while (!isExiting);
+}
+
+void UserMenu(LoginManager* loginManager) {
+    bool isExiting = false;
+    int iUserChoice;
+
+    do {
+        system("cls");
+        std::cout << "User options: \n";
+        std::cout << "1 - Change password\n";
+        std::cout << "2 - Buy Product\n";
+        std::cout << "3 - Basket\n";
+        std::cout << "9 - Logout\n";
+        std::cout << "Choice : ";
+        std::cin >> iUserChoice;
+
+        std::cout << "\n";
+
+        switch (iUserChoice)
+        {
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 9:
+            isExiting = true;
+            break;
+        default:
+            break;
+        }
+    } while (!isExiting);
+}
+
+void Pause() {
+    std::cout << "Press any key to continue...\n";
+    _getch();
 }

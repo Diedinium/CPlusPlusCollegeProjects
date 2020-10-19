@@ -2,6 +2,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 #ifndef CUSTOMCLASSES_H
 #define CUSTOMCLASSES_H
@@ -40,6 +41,42 @@ public:
 	bool ChangePassword(User* userToChange, std::string oldPassword, std::string newPassword);
 	void SetFirstName(User* userToChange, std::string newFirstName);
 	void SetLastName(User* userToChange, std::string newLastName);
+};
+
+class LoginManager {
+private:
+	std::vector<User> _vecUsers;
+	std::vector<Admin> _vecAdmins;
+public:
+	std::vector<User> GetUsers() { return _vecUsers; };
+	std::vector<Admin> GetAdmins() { return _vecAdmins; };
+	bool CheckUserLogin(std::string userName, std::string userPassword);
+	bool CheckAdminLogin(std::string userName, std::string userPassword);
+	void AddUser(User user);
+	void AddAdmin(Admin admin);
+};
+
+class Product {
+protected:
+	std::string _strProductName;
+	double _dProductTotal;
+	double _dProductTax;
+public:
+	Product();
+	Product(std::string productName, double productTotalBeforeTax, double productTax);
+	std::string GetProductName() { return _strProductName; }
+	double GetProductTotal() { return _dProductTotal; }
+	double GetProductTax() { return _dProductTax; }
+};
+
+class ProductManager {
+private:
+	std::vector<Product> _vecProducts;
+public:
+	void AddProduct(Product& product);
+	void DeleteProduct(std::string productName);
+	Product* GetProduct(std::string productName);
+	std::vector<Product> GetAllProducts();
 };
 
 #endif // CUSTOMCLASSES_H

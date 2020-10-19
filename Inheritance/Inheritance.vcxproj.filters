@@ -24,6 +24,15 @@
     <ClCompile Include="Admin.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="LoginManager.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProductManager.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Product.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes.h">
