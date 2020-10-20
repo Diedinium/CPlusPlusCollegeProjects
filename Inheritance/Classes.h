@@ -54,6 +54,10 @@ public:
 	bool CheckAdminLogin(std::string userName, std::string userPassword);
 	void AddUser(User user);
 	void AddAdmin(Admin admin);
+	User* GetUser(std::string userName);
+	void UpdateUserPassword(std::string userName, std::string newUserPassword);
+	void UpdateUserFirstName(std::string userName, std::string newFirstName);
+	void UpdateUserLastName(std::string userName, std::string newLastName);
 };
 
 class Product {
@@ -72,11 +76,16 @@ public:
 class ProductManager {
 private:
 	std::vector<Product> _vecProducts;
+	std::vector<Product> _vecBasket;
 public:
-	void AddProduct(Product& product);
+	void AddProduct(Product product);
 	void DeleteProduct(std::string productName);
-	Product* GetProduct(std::string productName);
+	Product GetProduct(std::string productName);
 	std::vector<Product> GetAllProducts();
+	void BuyProduct(Product product);
+	double GetBasketTotal();
+	double GetBasketTax();
+	std::vector<Product> GetBasketItems();
 };
 
 #endif // CUSTOMCLASSES_H
