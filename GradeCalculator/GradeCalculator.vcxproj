@@ -140,6 +140,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GradeCalculator.cpp" />
+    <ClCompile Include="Student.cpp" />
+    <ClCompile Include="StudentManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes.h" />
