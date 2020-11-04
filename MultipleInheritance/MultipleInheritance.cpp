@@ -32,6 +32,7 @@ private:
     double _dTilesRequired;
     double _dFloorPrice;
 public:
+    Room();
     void CalculateArea();
     void CalculateTilesRequired();
     void CalculateFloorPrice();
@@ -64,6 +65,12 @@ int main()
     std::cout << "Floor Area: " << objRoom.GetArea() << "\n";
     std::cout << "Tiles Required: " << objRoom.GetTilesRequired() << "\n";
     std::cout << "Floor Price: " << objRoom.GetFloorPrice() << "\n";
+}
+
+Room::Room() {
+    _dArea = 0;
+    _dTilesRequired = 0;
+    _dFloorPrice = 0;
 }
 
 void Room::CalculateArea() {
