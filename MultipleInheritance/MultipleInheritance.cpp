@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <conio.h>
+#include <algorithm>
 
 class Dimensions {
 private:
@@ -16,7 +17,7 @@ public:
 
 class Tiles {
 private:
-    double _dTilePrice = 1.5;
+    double _dTilePrice = 4;
     double _dTileSize = 2;
 public:
     double GetTilePrice() { return _dTilePrice; }
@@ -24,6 +25,7 @@ public:
 
     double GetTileSize() { return _dTileSize; }
     void SetTileSize(double tileSize) { _dTileSize = tileSize; }
+    void UpgradeTiles() { _dTilePrice = 8.5; }
 };
 
 class Walls {
@@ -34,6 +36,7 @@ protected:
     double _dWallArea;
 public:
     double GetWallArea() { return _dWallArea; }
+    void UpgradeWallpaper() { _dWallpaperCost = 12; }
 };
 
 class Room : public Dimensions, public Tiles, public Walls {
@@ -62,12 +65,33 @@ int main()
 {
     Room objRoom;
     double dHeight, dWidth;
+    std::string strTileDeluxe, strWallpaperDeluxe;
 
     std::cout << "Enter Height: ";
     std::cin >> dHeight;
 
     std::cout << "Enter width: ";
     std::cin >> dWidth;
+
+    std::cout << "Upgrade to deluxe tiles (y/n)? ";
+    std::cin >> strTileDeluxe;
+    std::transform(strTileDeluxe.begin(), strTileDeluxe.end(), strTileDeluxe.begin(),
+        [](unsigned char c) { return std::tolower(c); });
+
+    if (strTileDeluxe == "y") {
+        objRoom.UpgradeTiles();
+        std::cout << "Tiles upgraded, new cost: 8.5\n";
+    }
+
+    std::cout << "Upgrade to deluxe wallpaper (y/n)? ";
+    std::cin >> strWallpaperDeluxe;
+    std::transform(strWallpaperDeluxe.begin(), strWallpaperDeluxe.end(), strWallpaperDeluxe.begin(),
+        [](unsigned char c) { return std::tolower(c); });
+
+    if (strWallpaperDeluxe == "y") {
+        objRoom.UpgradeWallpaper();
+        std::cout << "Wallpaper upgraded, new cost: 12\n";
+    }
 
     objRoom.SetHeight(dHeight);
     objRoom.SetWidth(dWidth);
@@ -112,8 +136,8 @@ void Room::CalculateFloorPrice() {
 }
 
 void Room::CalculateWallPrice() {
-    double dWallAreaWidth = _dWallHeight * GetWidth();
-    double dWallAreaHeight = _dWallHeight * GetHeight();
+    double dWallAreaWidth = (_dWallHeight * GetWidth()) * 2;
+    double dWallAreaHeight = (_dWallHeight * GetHeight()) * 2;
     _dWallArea = dWallAreaHeight + dWallAreaWidth;
 
     _dWallpaperRequired = _dWallArea / _dWallpaperSize;
